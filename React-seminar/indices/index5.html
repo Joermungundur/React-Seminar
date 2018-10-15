@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!-- concepts: fetch api, promise -->
+<html>
+<head>
+    <meta charset="utf-8">
+    <script>
+        "use strict";
+
+        function fetchUsers() {
+            // hole Daten von https://randomuser.me/api?results=10
+            return fetch("https://randomuser.me/api?results=10")
+                .then(response => response.json())
+                .then(data => data.results)
+        }
+
+        function updateUsers() {
+            // stelle diese im HTML-doc als <ol><li>... Einträge dar
+
+            //TODO generate <ol><li>VN NN</li><li>VN NN</li>...</ol> and add it to div content
+            fetchUsers()
+                .then(users => {
+                    let html =
+                        "<ol>" +
+                        users
+                            .sort((user1, user2) => user1.name.last.localeCompare(user2.name.last))
+                            .map(user => `<li>${user.name.first} ${user.name.last}</li>`)
+                            .reduce((user1, user2) => user1 + user2)
+                        + "</ol>";
+                    document.getElementById("content").innerHTML = html;
+                })
+        }
+
+        document.addEventListener("DOMContentLoaded", updateUsers);
+    </script>
+</head>
+<body>
+<button onclick="updateUsers();">Benutzer aktualisieren</button>
+<div id="content"></div>
+</body>
+</html>

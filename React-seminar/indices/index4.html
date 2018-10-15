@@ -55,12 +55,32 @@
             new Person("Max", "Belli", new Date(1986, 11, 15),
                 new Address("Johann-Clanze-Straße 48", "81369", "Munich", "ger")),
             new Person("Nemo", "Odysseus", new Date(1910, 2, 5),
-                new Address("test 1", "00000", "Itaka", "gr")),
+                new Address("test 1", "00000", "Ithaka", "gr")),
             new Person("Leman", "Russ", new Date(39980, 4, 12),
-                new Address("The Fang 1", "0111", "Fenris", "fen"))
+                new Address("The Fang 1", "0111", "Fenris", "ger"))
         ];
 
+        persons.forEach(person => console.log(JSON.stringify(person, null, 2)));
+
+        let allPersonsFrom = persons.every(person => person.address.countryCode === "ger");
+        alert(allPersonsFrom);
+
         alert(persons[0].getGreeting("Lieber") + persons[2].getGreeting());
+
+        // TODO full names of persons from ger, sorted by lastname ASC, comma separated
+
+        // filter = only lets values through that match criterion
+        // sort   = sorts them by sort criterion
+        // map    = applies one function to all values of a list
+        // reduce = reduce a list to one value
+
+        let fullnamesOfSortedPersons = persons
+            .filter(person => person.address.countryCode === "ger")
+            .sort((person1, person2) => person1.lastName.localeCompare(person2))
+            .map(person => person.fullName)
+            .reduce((fullName1, fullName2) => fullName1 + ", " + fullName2);
+
+        alert(fullnamesOfSortedPersons);
     </script>
 </head>
 </html>

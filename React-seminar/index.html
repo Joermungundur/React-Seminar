@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="sass/format.css">
+		<script>
+			let backgroundIndex = 0;
+			
+			function changeBackground() {
+				let bodyElement = document.getElementsByTagName("body")[0];
+				bodyElement.className = `background${backgroundIndex + 1}`;
+				backgroundIndex = (backgroundIndex + 1) % 3;
+			}
+			
+			window.onload = () => {
+				changeBackground();
+				setInterval(() => changeBackground(), 3000);
+			};
+		</script>
+	</head>
+	<body>
+		<h1>Titel</h1>
+		<h2>Untertitel</h2>
+		<nav>
+			<ul>
+				<li><a href="#" class="active">Menü 1</a></li>
+				<li><a href="#">Menü 2</a></li>
+				<li><a href="#">Menü 3</a></li>		
+			</ul>
+		</nav>
+		<p>
+			Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt 
+			Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt
+			Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt
+			Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt
+			Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt
+			Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt 
+			Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt
+			Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt
+			Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt
+			Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt Inhalt
+		</p>
+	</body>
+</html>

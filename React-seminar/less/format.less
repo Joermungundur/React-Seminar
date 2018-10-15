@@ -1,0 +1,72 @@
+@import 'colors';
+
+@getBorderRadius: ~`getBorderRadius = function(borderWidth) {
+ let match = /(\d+\.?\d*)(.*)/.exec(borderWidth);
+ return (10 + match[1] * 2).toString() + match[2];
+}`;
+
+.decoration(@border-width: 1px, @margin: null) {
+  border: @border-width solid black;
+  border-radius: ~`getBorderRadius('@{border-width}')`;
+  color: @color-darker;
+  padding: @border-width * 3;
+  margin: @margin;
+  text-align: center;
+}
+
+* {
+  color: @color-base;
+}
+
+h1 {
+  .decoration(2px);
+  background-color: rgba(255, 255, 255, 0.25);
+}
+@import "colors.less";
+
+@getBorderRadius: ~`getBorderRadius = function(borderWidth) {
+  let match = /(\d+\.?\d*)(.*)/.exec(borderWidth);
+
+  return (10 + match[1] * 2).toString() + match[2];
+}`;
+
+.decoration(@border-width: 1px, @margin: null) {
+  border: @border-width solid black;
+  border-radius: ~`getBorderRadius('@{border-width}')`;
+  color: @color-darker;
+  padding: @border-width * 3;
+  margin: @margin;
+  text-align: center;
+}
+
+* {
+  color: @color-base;
+}
+
+h1 {
+  .decoration(2px);
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+h2:extend h1 {
+  color: @color-dark;
+}
+
+nav {
+  li, a {
+    color: @color-lighter;
+
+    &.active {
+      font-weight: bold;
+    }
+  }
+}
+
+.loop(@i) when (@i <= 3) {
+ .background{@i} {
+  background-image: url('../images/background{@i}.jpg');
+  background-size: 100%;
+ }
+  .loop(@i + 1);
+}
+.loop(1)
