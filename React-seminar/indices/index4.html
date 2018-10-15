@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!-- concepts: class syntax, setter & getter, destructuring assignment, default parameter, filter/map/reduce patterns -->
+<html>
+<head>
+    <meta charset="utf-8">
+    <script>
+        "use strict";
+
+        class Person {
+            constructor(firstName, lastName, birthDate, address) {
+                this.firstName = firstName;
+                this.lastName = lastName;
+                this.birthDate = birthDate;
+                this.address = address;
+            }
+
+            get birthDate() {
+                this._birthDate;
+            }
+
+            set birthDate(birthDate) {
+                if (birthDate && birthDate.getTime() < Date.now()) {
+                    this._birthDate = birthDate;
+                }
+            }
+
+            get fullName() {
+                return `${this.firstName} ${this.lastName}`;
+            }
+
+            get fullAddress() {
+                let {street,
+                    postCode,
+                    city,
+                    countryCode} = this.address;
+
+                return `${street}, ${postCode}, ${city}, ${countryCode}`;
+            }
+
+            getGreeting(greeting = "Hallo") {
+                return `${greeting} ${this.firstName}`
+            }
+        }
+
+        class Address {
+            constructor(street, postCode, city, countryCode) {
+                this.street = street;
+                this.postCode = postCode;
+                this.city = city;
+                this.countryCode = countryCode;
+            }
+        }
+
+        let persons = [
+            new Person("Max", "Belli", new Date(1986, 11, 15),
+                new Address("Johann-Clanze-Straße 48", "81369", "Munich", "ger")),
+            new Person("Nemo", "Odysseus", new Date(1910, 2, 5),
+                new Address("test 1", "00000", "Itaka", "gr")),
+            new Person("Leman", "Russ", new Date(39980, 4, 12),
+                new Address("The Fang 1", "0111", "Fenris", "fen"))
+        ];
+
+        alert(persons[0].getGreeting("Lieber") + persons[2].getGreeting());
+    </script>
+</head>
+</html>

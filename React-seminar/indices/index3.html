@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!-- concepts: bind -->
+<html>
+<head>
+    <meta charset="utf-8">
+    <script>
+	"use strict";
+
+    class Countdown {
+        constructor(time, action) {
+            this.time = time;
+            this.action = action;
+        }
+
+        start () {
+            this.intervalId = setInterval(this._executeIntervalStep.bind(this), 1000);
+        }
+
+        _executeIntervalStep() {
+            console.log("_executeIntervalStep >> intervalID-" +
+                    this.intervalID + ", time=" + this.time);
+
+            this.time--;
+            if (this.time <= 0) {
+            clearInterval(this.intervalId);
+            this.action();
+            }
+        }
+    }
+
+    let countdown = new Countdown(3, () => alert("Fertig!"));
+        countdown.start();
+
+    </script>
+</head>
+</html>
